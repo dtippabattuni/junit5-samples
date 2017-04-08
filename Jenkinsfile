@@ -21,7 +21,16 @@ pipeline {
     }
     stage('ListFiles') {
       steps {
-        sh 'ls -lrt'
+        parallel(
+          "ListFiles": {
+            sh 'ls -lrt'
+            
+          },
+          "": {
+            tool(name: 'java', type: 'java')
+            
+          }
+        )
       }
     }
   }

@@ -3,7 +3,20 @@ pipeline {
   stages {
     stage('Say Hello!') {
       steps {
-        echo 'Hello How are you'
+        parallel(
+          "Say Hello!": {
+            echo 'Hello How are you'
+            
+          },
+          "SayHolla": {
+            echo 'Holla'
+            
+          },
+          "PrintBonJor": {
+            echo 'Bon Jour'
+            
+          }
+        )
       }
     }
     stage('ListFiles') {
